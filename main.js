@@ -60,6 +60,7 @@ class playGame extends Phaser.Scene{
         this.bird = this.physics.add.sprite(80, game.config.height / 2, 'bird');
         this.bird.body.gravity.y = gameOptions.birdGravity;
         this.input.on('pointerdown', this.flap, this);
+        this.input.keyboard.on('keydown_SPACE',this.flap,this);
         this.score = 0;
         this.topScore = localStorage.getItem(gameOptions.localStorageName) == null ? 0 : localStorage.getItem(gameOptions.localStorageName);
         this.scoreText = this.add.text(10, 10, '');
@@ -95,6 +96,9 @@ class playGame extends Phaser.Scene{
         return rightmostPipe;
     }
     update(){
+
+        
+      
         this.physics.world.collide(this.bird, this.pipeGroup, function(){
 
             this.die();
